@@ -1,0 +1,33 @@
+{
+  "name": "angular-bridge",
+  "version": "0.1.0",
+  "description": "Bridging the gap of angular 1 to angular 2 for TypeScript",
+  "main": "./dist/component.js",
+  "scripts": {
+    "predeploy": "npm test",
+    "build": "tsc -p ./src",
+    "test": "jasmine",
+    "pretest": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Brocco/angular-bridge.git"
+  },
+  "keywords": [
+    "angular",
+    "angular2",
+    "component",
+    "typescript"
+  ],
+  "author": "Mike Brocchi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Brocco/angular-bridge/issues"
+  },
+  "homepage": "https://github.com/Brocco/angular-bridge",
+  "devDependencies": {
+    "angular": "^1.4.3",
+    "jasmine": "^2.3.1",
+    "typescript": "^1.5.3"
+  }
+}
