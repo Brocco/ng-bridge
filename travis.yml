@@ -1,0 +1,19 @@
+language: node_js
+sudo: false
+node_js:
+- '0.12'
+
+cache:
+  directories:
+    - node_modules
+
+env:
+  global:
+  - alias jasmine=./node_modules/.bin/jasmine
+  - alias tsc=./node_modules/.bin/tsc
+
+install:
+  - npm install
+
+script:
+- npm test
