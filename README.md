@@ -94,4 +94,4 @@ DDO properties used in angular 1, while providing a fatory method to allow for a
 angular 1 module definition.
 
 ## Build
-`npm run build`
+`npm test`
