@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/Brocco/ng-bridge.svg)](https://travis-ci.org/Brocco/ng-bridge)
 # ng-bridge
 Bridging the gap of angular 1 to angular 2 for TypeScript
 
@@ -92,6 +93,9 @@ class Person {
 Simply stated, it maps the component decorator/attribute properties from angular 2 to the corresponding 
 DDO properties used in angular 1, while providing a fatory method to allow for association to an
 angular 1 module definition.
+
+## Samples
+https://github.com/Brocco/ng-bridge-samples
 
 ## Build
 `npm test`
