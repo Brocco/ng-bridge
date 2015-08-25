@@ -12,13 +12,18 @@ describe('component', function () {
             expect(typeof component_1.ComponentBridge).toEqual('function');
         });
     });
+    describe('ViewBridge', function () {
+        it('should be a function', function () {
+            expect(typeof component_1.ViewBridge).toEqual('function');
+        });
+    });
     describe('registerComponent', function () {
         it('should be a function', function () {
             expect(typeof component_1.registerComponent).toEqual('function');
         });
         it('should register an angular 1 directive', function () {
             var TestClass = function () { };
-            TestClass.componentBridgeInfo = {
+            TestClass.__componentBridge = {
                 selector: 'test'
             };
             var module = jasmine.createSpyObj('module', ['directive']);
@@ -27,7 +32,7 @@ describe('component', function () {
         });
         it('should register an angular 1 directive (with proper rename)', function () {
             var TestClass = function () { };
-            TestClass.componentBridgeInfo = {
+            TestClass.__componentBridge = {
                 selector: 'test-component'
             };
             var module = jasmine.createSpyObj('module', ['directive']);

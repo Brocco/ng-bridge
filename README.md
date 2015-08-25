@@ -54,6 +54,7 @@ class PersonController {
 
 #### Angular 2 Component in TypeScript:
 ``` javascript
+import { Component, View } from 'angular2/angular2';
 @Component({
 	selector: 'person',
 	properties: ['firstName', 'lastName']
@@ -73,10 +74,14 @@ class Person {
 
 #### Angular 1 Directive in TypeScript via ng-bridge:
 ``` javascript
+// alias references to simplify upgrade (just change the imports)
+import { ComponentBridge as Component, ViewBridge as View } from 'ng-bridge';
 @Component({
 	selector: 'person',
 	properties: ['firstName', 'lastName'],
 	controllerAs: 'p',
+})
+@View({
 	template: `<div>{{p.firstName}} {{p.lastName}}</div>`
 })
 class Person {

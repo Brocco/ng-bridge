@@ -7,15 +7,13 @@ export interface IComponent {
     events?: string[];
     /** string reference properties */
     strProperties?: string[];
-    template?: string;
-    templateUrl?: string;
     priority?: number;
     transclude?: any;
 }
 export declare class ComponentConverter {
     private definition;
     constructor(definition: IComponent);
-    convert(componentClass: any): ng.IDirective;
+    convert(componentClass: any): any;
     private buildScope();
     private addProperties(obj, properties, prefix);
 }

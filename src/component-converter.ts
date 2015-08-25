@@ -7,8 +7,6 @@ export interface IComponent {
   events?: string[];
   /** string reference properties */
   strProperties?: string[];
-  template?: string;
-  templateUrl?: string;
   priority?: number;
   transclude?: any;
 }
@@ -17,31 +15,30 @@ export class ComponentConverter {
   constructor(private definition: IComponent) { }
 
   public convert(componentClass: any) {
+    
+    var ddo = componentClass.__ddo || {};
 
-    var directiveDefinition: angular.IDirective = {
-      bindToController: true,
-      scope: this.buildScope(),
-      restrict: 'E', //todo: base restrict off of selector pattern
-      name: this.definition.selector,
-      template: this.definition.template,
-      templateUrl: this.definition.templateUrl,
-      priority: this.definition.priority,
-      transclude: this.definition.transclude,
-      controller: componentClass,
-      controllerAs: this.definition.controllerAs,
-      link: function(scope: angular.IScope,
-        element: angular.IAugmentedJQuery,
-        attr: any,
-        ctrl: any) {
-        if (ctrl.link) {
-          ctrl.link(scope, element, attr);
-        }
+    ddo.bindToController = true;
+    ddo.scope = this.buildScope();
+    ddo.restrict = 'E', //todo: base restrict off of selector patter;
+    ddo.name = this.definition.selector;
+    ddo.priority = this.definition.priority;
+    ddo.transclude = this.definition.transclude;
+    ddo.controller = componentClass;
+    ddo.controllerAs = this.definition.controllerAs;
+    ddo.link = function(scope: angular.IScope,
+      element: angular.IAugmentedJQuery,
+      attr: any,
+      ctrl: any) {
+      if (ctrl.link) {
+        ctrl.link(scope, element, attr);
       }
     };
 
-    directiveDefinition['componentBridgeInfo'] = this.definition;
-
-    return directiveDefinition;
+    componentClass.__componentBridge = this.definition;
+    componentClass.__ddo = ddo;
+    
+    return componentClass;
   }
 
   private buildScope() {

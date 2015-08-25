@@ -3,25 +3,23 @@ var ComponentConverter = (function () {
         this.definition = definition;
     }
     ComponentConverter.prototype.convert = function (componentClass) {
-        var directiveDefinition = {
-            bindToController: true,
-            scope: this.buildScope(),
-            restrict: 'E',
-            name: this.definition.selector,
-            template: this.definition.template,
-            templateUrl: this.definition.templateUrl,
-            priority: this.definition.priority,
-            transclude: this.definition.transclude,
-            controller: componentClass,
-            controllerAs: this.definition.controllerAs,
-            link: function (scope, element, attr, ctrl) {
-                if (ctrl.link) {
-                    ctrl.link(scope, element, attr);
-                }
+        var ddo = componentClass.__ddo || {};
+        ddo.bindToController = true;
+        ddo.scope = this.buildScope();
+        ddo.restrict = 'E',
+            ddo.name = this.definition.selector;
+        ddo.priority = this.definition.priority;
+        ddo.transclude = this.definition.transclude;
+        ddo.controller = componentClass;
+        ddo.controllerAs = this.definition.controllerAs;
+        ddo.link = function (scope, element, attr, ctrl) {
+            if (ctrl.link) {
+                ctrl.link(scope, element, attr);
             }
         };
-        directiveDefinition['componentBridgeInfo'] = this.definition;
-        return directiveDefinition;
+        componentClass.__componentBridge = this.definition;
+        componentClass.__ddo = ddo;
+        return componentClass;
     };
     ComponentConverter.prototype.buildScope = function () {
         var scope;

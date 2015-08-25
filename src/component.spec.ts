@@ -1,4 +1,4 @@
-import { ComponentBridge, registerComponent } from './component';
+import { ComponentBridge, ViewBridge, registerComponent } from './component';
 import { IComponent } from './component-converter';
 
 describe('component', () => {
@@ -16,6 +16,12 @@ describe('component', () => {
 			expect(typeof ComponentBridge).toEqual('function');
 		});
 	});
+  
+  describe('ViewBridge', () => {
+    it('should be a function', () => {
+      expect(typeof ViewBridge).toEqual('function');
+    });
+  });
 	
 	describe('registerComponent', () => {
 		it('should be a function', () => {
@@ -24,7 +30,7 @@ describe('component', () => {
 		
 		it('should register an angular 1 directive', () => {
 			var TestClass: any = function() {};
-			TestClass.componentBridgeInfo = {
+			TestClass.__componentBridge = {
 				selector: 'test'
 			};
 			
@@ -35,7 +41,7 @@ describe('component', () => {
 		
 		it('should register an angular 1 directive (with proper rename)', () => {
 			var TestClass: any = function() {};
-			TestClass.componentBridgeInfo = {
+			TestClass.__componentBridge = {
 				selector: 'test-component'
 			};
 			

@@ -1,6 +1,6 @@
 {
   "name": "ng-bridge",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Bridging the gap of angular 1 to angular 2 for TypeScript",
   "main": "./dist/component.js",
   "scripts": {
